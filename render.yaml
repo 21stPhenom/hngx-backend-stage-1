@@ -1,0 +1,6 @@
+service:
+  - name: hngx_task1
+  - type: web
+  - runtime: python
+  - buildCommand: './build.sh'
+  - startCommand: "gunicorn hngx.wsgi:application"
