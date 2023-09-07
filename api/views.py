@@ -27,10 +27,10 @@ class DefaultView(APIView):
 
             response_data = {
                 'slack_name': params.get('slack_name', None),
-                'track': params.get('track', None),
-
                 'current_day': weekday_name,
                 'utc_time': timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                'track': params.get('track', None),
+
                 'github_file_url': "https://github.com/21stPhenom/hngx-backend-stage-1/blob/dev/api/views.py",
                 'github_repo_url': "https://github.com/21stPhenom/hngx-backend-stage-1/",
                 'status_code': 200
