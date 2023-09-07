@@ -27,7 +27,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if env('DEBUG') == 'True' else False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'hngx_task1.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'hngx-task1-6vif.onrender.com', 'localhost']
 
 
 # Application definition
