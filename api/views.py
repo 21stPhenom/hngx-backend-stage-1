@@ -25,12 +25,14 @@ class DefaultView(APIView):
             weekday_as_int = timezone.now().weekday()
             weekday_name = self.get_weekday_name(weekday_as_int)
 
+            utc_time = str(timezone.now())
+            utc_time = utc_time[0:-5] + 'Z'
             response_data = {
                 'slack_name': params.get('slack_name', None),
                 'track': params.get('track', None),
 
                 'current_day': weekday_name,
-                'utc_time': timezone.now(),
+                'utc_time': utc_time,
                 'github_file_url': "https://github.com/21stPhenom/hngx-backend-stage-1/blob/dev/api/views.py",
                 'github_repo_url': "https://github.com/21stPhenom/hngx-backend-stage-1/",
                 'status_code': 200
