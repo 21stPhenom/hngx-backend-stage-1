@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 
 # Create your views here.
 class DefaultView(APIView):
-    def get_weekday_name(self, request, weekday):
+    def get_weekday_name(self, weekday):
         weekday_dict = {
             0: 'Monday',
             1: 'Tuesday',
@@ -23,11 +23,11 @@ class DefaultView(APIView):
         if len(request.query_params) != 0:
             params = request.query_params
             weekday_as_int = timezone.now().weekday()
-            weekday_name = self.get_weekday_name(request, weekday_as_int)
+            weekday_name = self.get_weekday_name(weekday_as_int)
 
             response_data = {
-                'slack_name': params['slack_name'],
-                'track': params['track'],
+                'slack_name': params.get('slack_name', None),
+                'track': params.get('track', None),
 
                 'current_day': weekday_name,
                 'utc_time': timezone.now(),
@@ -35,8 +35,12 @@ class DefaultView(APIView):
                 'github_repo_url': "https://github.com/21stPhenom/hngx-backend-stage-1/",
                 'status_code': 200
             }
-
-            return JsonResponse(response_data)
+            if response_data['slack_name'] == None or response_data['track'] == None:
+                return JsonResponse({
+                    'message': "You omitted one of the required parameters."
+                })
+            
+            return JsonResponse(response_data, status=200)
     
         return Response(status=400)
     
