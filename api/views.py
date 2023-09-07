@@ -30,7 +30,7 @@ class DefaultView(APIView):
                 'track': params['track'],
 
                 'current_day': weekday_name,
-                'utc_time': timezone.now().utcnow(),
+                'utc_time': timezone.now(),
                 'github_file_url': "https://github.com/21stPhenom/hngx-backend-stage-1/blob/dev/api/views.py",
                 'github_repo_url': "https://github.com/21stPhenom/hngx-backend-stage-1/",
                 'status_code': 200
